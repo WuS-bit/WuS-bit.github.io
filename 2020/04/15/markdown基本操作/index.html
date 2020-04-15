@@ -16,10 +16,12 @@
 
   <!-- 页面元数据 -->
   
-    <title>Hello World - WuS-bit</title>
+    <title>markdown基本操作 - WuS-bit</title>
+  
+    <meta name="keywords" content="markdwon入门">
   
   
-    <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in trouble...">
+    <meta name="description" content="作为一个markdown初学者，仅以此文作为markdown基本语法实操练习，及发文章的demo。文中涉及了markdown的基本语法，供在源代码模式下记忆练习。  加油！！！">
   
 
   <!-- feed -->
@@ -497,8 +499,8 @@
           
   
     <h1 class="title">
-      <a href="/2020/04/14/hello-world/">
-        Hello World
+      <a href="/2020/04/15/markdown%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/">
+        markdown基本操作
       </a>
     </h1>
   
@@ -522,6 +524,14 @@
           
             
               
+  
+  <div class='new-meta-item category'>
+    <a href='/categories/%E5%AD%A6%E4%B9%A0%E6%95%88%E7%8E%87/' rel="nofollow">
+      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+      <p>学习效率</p>
+    </a>
+  </div>
+
 
             
           
@@ -529,7 +539,7 @@
               <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：2020年4月14日</p>
+    <p>发布于：2020年4月15日</p>
   </a>
 </div>
 
@@ -552,20 +562,99 @@
       <section class="article typo">
         <div class="article-entry" itemprop="articleBody">
           
-          <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
+          <p>作为一个markdown初学者，仅以此文作为markdown基本语法实操练习，及发文章的demo。文中涉及了markdown的基本语法，供在源代码模式下记忆练习。  加油！！！</p>
 <a id="more"></a>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<h1 id="一级标题"><a href="#一级标题" class="headerlink" title="一级标题"></a>一级标题</h1><h2 id="二级标题"><a href="#二级标题" class="headerlink" title="二级标题"></a>二级标题</h2><h3 id="三级标题"><a href="#三级标题" class="headerlink" title="三级标题"></a>三级标题</h3><h4 id="写博客："><a href="#写博客：" class="headerlink" title="写博客："></a>写博客：</h4><pre><code>git bash里输入指令： hexo new &lt;文件名&gt;
+在_posts里生成新的.md文件，编辑即可
+hexo g  &amp;&amp;  hexo d </code></pre><h1 id="我也是一级标题"><a href="#我也是一级标题" class="headerlink" title="我也是一级标题"></a>我也是一级标题</h1><h2 id="我是二级标题"><a href="#我是二级标题" class="headerlink" title="我是二级标题"></a>我是二级标题</h2><p><strong>加粗</strong><br><strong>我也是粗体</strong><br><em>斜体</em><br><em>我也是斜体</em><br><strong><em>我也是斜体加粗</em></strong><br><strong><em>斜体加粗</em></strong><br><del>删除线</del><br>==高亮==<br><u>我有下划线</u><br>这里创建了一个关于我的脚注[^ME]<br>[^ME]:   我是Wu </p>
+<p>我是^上标^<br>我是<del>下标</del><br>== (3)列表==</p>
+<h3 id="号-号-号都能列表"><a href="#号-号-号都能列表" class="headerlink" title="*号 +号 -号都能列表"></a>*号 +号 -号都能列表</h3><ul>
+<li>一二三四五<ul>
+<li>上山打老虎</li>
+</ul>
+</li>
+</ul>
+<ol>
+<li>一二三四五</li>
+</ol>
+<h3 id="列表嵌套只需在子列表中的选项添加四个空格即可："><a href="#列表嵌套只需在子列表中的选项添加四个空格即可：" class="headerlink" title="列表嵌套只需在子列表中的选项添加四个空格即可："></a>列表嵌套只需在子列表中的选项添加四个空格即可：</h3><ol>
+<li>第一个列表：<ul>
+<li>第一个元素</li>
+<li>第2个</li>
+</ul>
+</li>
+<li>第二个：<ul>
+<li>1</li>
+<li>2</li>
+</ul>
+</li>
+</ol>
+<h3 id="区块配列表："><a href="#区块配列表：" class="headerlink" title="区块配列表："></a>区块配列表：</h3><ol>
+<li>Java面向对象：<blockquote>
+<p>封装性<br>继承性<br>多态性</p>
+</blockquote>
+</li>
+</ol>
+<h3 id="代码块："><a href="#代码块：" class="headerlink" title="代码块："></a>代码块：</h3><p><code>printf()</code></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code>public class Person {
 
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+    private string name;
 
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+}</code></pre><h3 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h3><h4 id="这是我的博客主页：WuS-bit"><a href="#这是我的博客主页：WuS-bit" class="headerlink" title="这是我的博客主页：WuS-bit"></a>这是我的博客主页：<a href="https://WuS-bit.github.io" target="_blank" rel="noopener">WuS-bit</a></h4><h3 id="百度：http-baidu-com"><a href="#百度：http-baidu-com" class="headerlink" title="百度：http://baidu.com"></a>百度：<a href="http://baidu.com" target="_blank" rel="noopener">http://baidu.com</a></h3><h3 id="高级链接："><a href="#高级链接：" class="headerlink" title="高级链接："></a>高级链接：</h3><p>这个链接用1作为网址变量 <a href="http://baidu.com" target="_blank" rel="noopener">baidu</a><br>在文档末尾给1赋值</p>
+<p>== 表格 ==</p>
+<table>
+<thead>
+<tr>
+<th>mon</th>
+<th align="right">tue</th>
+<th>wed</th>
+<th>thu</th>
+<th>fri</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>上山</td>
+<td align="right">上山</td>
+<td>上山</td>
+<td>伤寒</td>
+<td>上山</td>
+<td></td>
+</tr>
+</tbody></table>
+<hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">printf();</span><br></pre></td></tr></table></figure>
+<h4 id="代码块：-1"><a href="#代码块：-1" class="headerlink" title="代码块："></a>代码块：</h4><pre><code>public static void main(){
+    system.out.println(&quot;Hello World&quot;);
+}</code></pre><h2 id="段落："><a href="#段落：" class="headerlink" title="段落："></a>段落：</h2><p>Markdown 段落没有特殊的格式，直接编写文字就好，段落的换行是使用两个以上空格加上回车。<br>当然也可以在段落后面使用一个空行来表示重新开始一个段落。</p>
+<h3 id="插入图片："><a href="#插入图片：" class="headerlink" title="插入图片："></a>插入图片：</h3><pre><code>开头一个感叹号 !
+接着一个方括号，里面放上图片的替代文字
+接着一个普通括号，里面放上图片的网址，最后还可以用引号包住并加上选择性的&apos;title&apos;属性的文字。</code></pre><h4 id="这是我的微信图像："><a href="#这是我的微信图像：" class="headerlink" title="这是我的微信图像： "></a>这是我的微信图像： <img src="C:%5CUsers%5CWuShang%5CDesktop%5Cavatar.jpg" alt="微信头像"></h4><h4 id="标签指定图片大小："><a href="#标签指定图片大小：" class="headerlink" title="标签指定图片大小："></a><img>标签指定图片大小：</h4><h4 id=""><a href="#" class="headerlink" title=""></a><img src="C:\Users\WuShang\Desktop\avatar.jpg" width="50%"></h4><h2 id="高级："><a href="#高级：" class="headerlink" title="高级："></a>高级：</h2><ol>
+<li><p>横向流程图源码格式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">graph LR</span><br><span class="line">A[方形] --&gt;B(圆角)</span><br><span class="line">    B --&gt; C&#123;条件a&#125;</span><br><span class="line">    C --&gt;|a&#x3D;1| D[结果1]</span><br><span class="line">    C --&gt;|a&#x3D;2| E[结果2]</span><br><span class="line">    F[横向流程图]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>竖向流程图源码格式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">graph TD</span><br><span class="line">A[方形] --&gt; B(圆角)</span><br><span class="line">    B --&gt; C&#123;条件a&#125;</span><br><span class="line">    C --&gt; |a&#x3D;1| D[结果1]</span><br><span class="line">    C --&gt; |a&#x3D;2| E[结果2]</span><br><span class="line">    F[竖向流程图]</span><br></pre></td></tr></table></figure></li>
+<li><p>标准流程图源码格式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">st&#x3D;&gt;start: 开始框</span><br><span class="line">op&#x3D;&gt;operation: 处理框</span><br><span class="line">cond&#x3D;&gt;condition: 判断框(是或否?)</span><br><span class="line">sub1&#x3D;&gt;subroutine: 子流程</span><br><span class="line">io&#x3D;&gt;inputoutput: 输入输出框</span><br><span class="line">e&#x3D;&gt;end: 结束框</span><br><span class="line">st-&gt;op-&gt;cond</span><br><span class="line">cond(yes)-&gt;io-&gt;e</span><br><span class="line">cond(no)-&gt;sub1(right)-&gt;op</span><br></pre></td></tr></table></figure></li>
+<li><p>标准流程图源码格式（横向）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">st&#x3D;&gt;start: 开始框</span><br><span class="line">op&#x3D;&gt;operation: 处理框</span><br><span class="line">cond&#x3D;&gt;condition: 判断框(是或否?)</span><br><span class="line">sub1&#x3D;&gt;subroutine: 子流程</span><br><span class="line">io&#x3D;&gt;inputoutput: 输入输出框</span><br><span class="line">e&#x3D;&gt;end: 结束框</span><br><span class="line">st(right)-&gt;op(right)-&gt;cond</span><br><span class="line">cond(yes)-&gt;io(bottom)-&gt;e</span><br><span class="line">cond(no)-&gt;sub1(right)-&gt;op</span><br></pre></td></tr></table></figure></li>
+<li><p>UML时序图源码样例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">对象A-&gt;对象B: 对象B你好吗?（请求）</span><br><span class="line">Note right of 对象B: 对象B的描述</span><br><span class="line">Note left of 对象A: 对象A的描述(提示)</span><br><span class="line">对象B--&gt;对象A: 我很好(响应)</span><br><span class="line">对象A-&gt;对象B: 你真的好吗？</span><br></pre></td></tr></table></figure></li>
+<li><p>UML时序图源码复杂样例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Title: 标题：复杂使用</span><br><span class="line">对象A-&gt;对象B: 对象B你好吗?（请求）</span><br><span class="line">Note right of 对象B: 对象B的描述</span><br><span class="line">Note left of 对象A: 对象A的描述(提示)</span><br><span class="line">对象B--&gt;对象A: 我很好(响应)</span><br><span class="line">对象B-&gt;小三: 你好吗</span><br><span class="line">小三--&gt;&gt;对象A: 对象B找我了</span><br><span class="line">对象A-&gt;对象B: 你真的好吗？</span><br><span class="line">Note over 小三,对象B: 我们是朋友</span><br><span class="line">participant C</span><br><span class="line">Note right of C: 没人陪我玩</span><br></pre></td></tr></table></figure></li>
+<li><p>UML标准时序图样例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">%% 时序图例子,-&gt; 直线，--&gt;虚线，-&gt;&gt;实线箭头</span><br><span class="line">  sequenceDiagram</span><br><span class="line">    participant 张三</span><br><span class="line">    participant 李四</span><br><span class="line">    张三-&gt;王五: 王五你好吗？</span><br><span class="line">    loop 健康检查</span><br><span class="line">        王五-&gt;王五: 与疾病战斗</span><br><span class="line">    end</span><br><span class="line">    Note right of 王五: 合理 食物 &lt;br&#x2F;&gt;看医生...</span><br><span class="line">    李四--&gt;&gt;张三: 很好!</span><br><span class="line">    王五-&gt;李四: 你怎么样?</span><br><span class="line">    李四--&gt;王五: 很好!</span><br></pre></td></tr></table></figure></li>
+<li><p>甘特图样例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">%% 语法示例</span><br><span class="line">        gantt</span><br><span class="line">        dateFormat  YYYY-MM-DD</span><br><span class="line">        title 软件开发甘特图</span><br><span class="line">        section 设计</span><br><span class="line">        需求                      :done,    des1, 2014-01-06,2014-01-08</span><br><span class="line">        原型                      :active,  des2, 2014-01-09, 3d</span><br><span class="line">        UI设计                     :         des3, after des2, 5d</span><br><span class="line">    未来任务                     :         des4, after des3, 5d</span><br><span class="line">        section 开发</span><br><span class="line">        学习准备理解需求                      :crit, done, 2014-01-06,24h</span><br><span class="line">        设计框架                             :crit, done, after des2, 2d</span><br><span class="line">        开发                                 :crit, active, 3d</span><br><span class="line">        未来任务                              :crit, 5d</span><br><span class="line">        耍                                   :2d</span><br><span class="line">        section 测试</span><br><span class="line">        功能测试                              :active, a1, after des3, 3d</span><br><span class="line">        压力测试                               :after a1  , 20h</span><br><span class="line">        测试报告                               : 48h</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
 
           
             <br>
@@ -602,7 +691,7 @@
           
         
           
-            <p>本文永久链接是：<a href=http://yoursite.com/2020/04/14/hello-world/>http://yoursite.com/2020/04/14/hello-world/</a></p>
+            <p>本文永久链接是：<a href=http://yoursite.com/2020/04/15/markdown%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/>http://yoursite.com/2020/04/15/markdown%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/</a></p>
           
         
       </blockquote>
@@ -652,7 +741,7 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-04-15T21:12:06+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-04-15T21:39:00+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
     <p>更新于：2020年4月15日</p>
@@ -663,6 +752,9 @@
       
         
           
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/markdwon%E5%85%A5%E9%97%A8/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>markdwon入门</p></a></div>
+
 
         
       
@@ -679,7 +771,7 @@
       
         <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer"
           
-          href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2020/04/14/hello-world/&title=Hello World - WuS-bit&summary=Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub."
+          href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2020/04/15/markdown%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/&title=markdown基本操作 - WuS-bit&summary=作为一个markdown初学者，仅以此文作为markdown基本语法实操练习，及发文章的demo。文中涉及了markdown的基本语法，供在源代码模式下记忆练习。  加油！！！"
           
           >
           
@@ -691,7 +783,7 @@
       
         <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer"
           
-          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://yoursite.com/2020/04/14/hello-world/&title=Hello World - WuS-bit&summary=Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub."
+          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://yoursite.com/2020/04/15/markdown%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/&title=markdown基本操作 - WuS-bit&summary=作为一个markdown初学者，仅以此文作为markdown基本语法实操练习，及发文章的demo。文中涉及了markdown的基本语法，供在源代码模式下记忆练习。  加油！！！"
           
           >
           
@@ -703,7 +795,7 @@
       
         <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer"
           
-          href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2020/04/14/hello-world/&title=Hello World - WuS-bit&summary=Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub."
+          href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2020/04/15/markdown%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/&title=markdown基本操作 - WuS-bit&summary=作为一个markdown初学者，仅以此文作为markdown基本语法实操练习，及发文章的demo。文中涉及了markdown的基本语法，供在源代码模式下记忆练习。  加油！！！"
           
           >
           
@@ -727,15 +819,11 @@
         
           <div class="prev-next">
             
-              <a class='prev' href='/2020/04/15/markdown%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/'>
-                <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>markdown基本操作</p>
-                <p class='content'>作为一个markdown初学者，仅以此文作为markdown基本语法实操练习，及发文章的demo。文中涉及了markdown的基本语法，供在源代码模式下记忆练习。  加油！！！
-
-
-
-一级标题二...</p>
-              </a>
             
+              <a class='next' href='/2020/04/14/hello-world/'>
+                <p class='title'>Hello World<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+                <p class='content'>Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any ...</p>
+              </a>
             
           </div>
         
@@ -762,7 +850,7 @@
 
   <script>
     window.subData = {
-      title: 'Hello World',
+      title: 'markdown基本操作',
       tools: true
     }
   </script>
@@ -788,7 +876,7 @@
 
 
     <div class='content'>
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick-Start"><span class="toc-number">1.</span> <span class="toc-text">Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-a-new-post"><span class="toc-number">1.1.</span> <span class="toc-text">Create a new post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run-server"><span class="toc-number">1.2.</span> <span class="toc-text">Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generate-static-files"><span class="toc-number">1.3.</span> <span class="toc-text">Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy-to-remote-sites"><span class="toc-number">1.4.</span> <span class="toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#二级标题"><span class="toc-number">1.</span> <span class="toc-text">二级标题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#三级标题"><span class="toc-number">1.1.</span> <span class="toc-text">三级标题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#写博客："><span class="toc-number">1.1.1.</span> <span class="toc-text">写博客：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#我是二级标题"><span class="toc-number">2.</span> <span class="toc-text">我是二级标题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#号-号-号都能列表"><span class="toc-number">2.1.</span> <span class="toc-text">*号 +号 -号都能列表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#列表嵌套只需在子列表中的选项添加四个空格即可："><span class="toc-number">2.2.</span> <span class="toc-text">列表嵌套只需在子列表中的选项添加四个空格即可：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#区块配列表："><span class="toc-number">2.3.</span> <span class="toc-text">区块配列表：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代码块："><span class="toc-number">2.4.</span> <span class="toc-text">代码块：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#链接"><span class="toc-number">2.5.</span> <span class="toc-text">链接</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#这是我的博客主页：WuS-bit"><span class="toc-number">2.5.1.</span> <span class="toc-text">这是我的博客主页：WuS-bit</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#百度：http-baidu-com"><span class="toc-number">2.6.</span> <span class="toc-text">百度：http:&#x2F;&#x2F;baidu.com</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#高级链接："><span class="toc-number">2.7.</span> <span class="toc-text">高级链接：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#代码块：-1"><span class="toc-number">2.7.1.</span> <span class="toc-text">代码块：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#段落："><span class="toc-number">3.</span> <span class="toc-text">段落：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#插入图片："><span class="toc-number">3.1.</span> <span class="toc-text">插入图片：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#这是我的微信图像："><span class="toc-number">3.1.1.</span> <span class="toc-text">这是我的微信图像： </span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#标签指定图片大小："><span class="toc-number">3.1.2.</span> <span class="toc-text">标签指定图片大小：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#"><span class="toc-number">3.1.3.</span> <span class="toc-text"></span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#高级："><span class="toc-number">4.</span> <span class="toc-text">高级：</span></a></li></ol>
     </div>
   </section>
 
