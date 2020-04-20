@@ -16,8 +16,12 @@
 
   <!-- 页面元数据 -->
   
-    <title>分类 - WuS-bit</title>
+    <title>explain关键字 - WuS-bit</title>
   
+    <meta name="keywords" content="mysql基础">
+  
+  
+    <meta name="description" content="概要在MySQL中，可以使用explain关键字来获取模拟优化器执行SQL语句的结果，从而知道MySQL是如何执行查询语句的，进而分析查询语句或是表结构的性能瓶颈，方便进行性能优化。">
   
 
   <!-- feed -->
@@ -326,58 +330,309 @@
     <div class='body-wrapper'>
       
 
-
 <div class='l_main'>
   
-    
-      <section class="post-list ">
-        <div class='post-wrapper'>
-          <article id="archive-page" class="post article white-box shadow">
-            <section class="archive">
-              <div class="archive-item archive-year mark">
-                <h2>分类</h2>
-              </div>
-              <div class="archive-item archive-post mark all-categories">
-                
-                  
-                    <a class="" href="/categories/mysql/">
-                      <time><i class='fas fa-folder-open fa-fw' aria-hidden="true"></i>&nbsp;&nbsp;mysql</time>
-                      <span class="title">
-                        (1)
-                      </span>
-                    </a>
-                  
-                    <a class=" child" href="/categories/mysql/explain%E5%85%B3%E9%94%AE%E5%AD%97/">
-                      <time><i class='fas fa-folder-open fa-fw' aria-hidden="true"></i>&nbsp;&nbsp;explain关键字</time>
-                      <span class="title">
-                        (1)
-                      </span>
-                    </a>
-                  
-                    <a class="" href="/categories/%E5%AD%A6%E4%B9%A0%E6%95%88%E7%8E%87/">
-                      <time><i class='fas fa-folder-open fa-fw' aria-hidden="true"></i>&nbsp;&nbsp;学习效率</time>
-                      <span class="title">
-                        (1)
-                      </span>
-                    </a>
-                  
-                    <a class=" child" href="/categories/%E5%AD%A6%E4%B9%A0%E6%95%88%E7%8E%87/markdown/">
-                      <time><i class='fas fa-folder-open fa-fw' aria-hidden="true"></i>&nbsp;&nbsp;markdown</time>
-                      <span class="title">
-                        (1)
-                      </span>
-                    </a>
-                  
-                
-              </div>
-              <br>
-              
-            </section>
-          </article>
-        </div>
-      </section>
-    
+
   
+    <article id="post" class="post white-box shadow article-type-post" itemscope itemprop="blogPost">
+      
+
+
+  <section class='meta'>
+    
+      
+      
+      <div class="meta" id="header-meta">
+        
+          
+  
+    <h1 class="title">
+      <a href="/explain%E5%85%B3%E9%94%AE%E5%AD%97/">
+        explain关键字
+      </a>
+    </h1>
+  
+
+
+        
+        <div class='new-meta-box'>
+          
+            
+          
+            
+              
+<div class='new-meta-item author'>
+  <a href="/" rel="nofollow">
+    <img src="/img/avatar.jpg">
+    <p>伍尚</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+  
+  <div class='new-meta-item category'>
+    <a href='/categories/mysql/explain%E5%85%B3%E9%94%AE%E5%AD%97/' rel="nofollow">
+      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+      <p>mysql/explain关键字</p>
+    </a>
+  </div>
+
+
+            
+          
+            
+              <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：2020年4月20日</p>
+  </a>
+</div>
+
+            
+          
+            
+              
+
+            
+          
+        </div>
+        
+          <hr>
+        
+      </div>
+    
+  </section>
+
+
+      <section class="article typo">
+        <div class="article-entry" itemprop="articleBody">
+          
+          <h2 id="概要"><a href="#概要" class="headerlink" title="概要"></a>概要</h2><p>在MySQL中，可以使用<strong><em>explain</em></strong>关键字来获取模拟优化器执行SQL语句的结果，从而知道MySQL是如何执行查询语句的，进而分析查询语句或是表结构的性能瓶颈，方便进行性能优化。</p>
+<a id="more"></a>
+<h1 id="Explain关键字"><a href="#Explain关键字" class="headerlink" title="Explain关键字"></a>Explain关键字</h1><h2 id="语法：-explain-SQL；"><a href="#语法：-explain-SQL；" class="headerlink" title="语法： explain + SQL；"></a>语法： explain + SQL；</h2><p>先上一个demo，留下印象：<br><img src="/img/mysql_learning/explain/explaindemo.png" alt="demo"></p>
+<h2 id="Explain中的列"><a href="#Explain中的列" class="headerlink" title="Explain中的列"></a>Explain中的列</h2><h3 id="一、id列"><a href="#一、id列" class="headerlink" title="一、id列"></a>一、id列</h3><p>总是一组数字，是select查询的序列号，用来标识查询中执行select子句或操作表的顺序。</p>
+<p>情况分析</p>
+<ul>
+<li>id相同时，从上到下顺序执行操作表（mysql的查询计划是左深树）</li>
+<li>id不同时，id值越大越先执行</li>
+<li>当查询语句不含子查询或联合(Union)时id总为1</li>
+<li>当出现子查询时，id会增大<br> <img src="/img/mysql_learning/explain/iddemo.png" alt="id"></li>
+</ul>
+<h3 id="二、select-type"><a href="#二、select-type" class="headerlink" title="二、select_type"></a>二、select_type</h3><p>表示查询类型</p>
+<blockquote>
+<ol>
+<li>SIMPLE:简单的select查询，查询中不包括子查询或union</li>
+<li>PRIMARY:查询中包括任何复杂的子部分，最外层查询被标记为primary</li>
+<li>SUBQUERY:在select或where子句中的子查询</li>
+<li>DERIVED:from子句中的子查询被标记为derived(衍生)，MySQL会递归地执行这些子查询，结果放在临时表</li>
+<li>UNION：出现在UNION后的那个select查询会被标记为UNION</li>
+<li>UNION RESULT:从UNION表获取结果的select</li>
+</ol>
+</blockquote>
+<h3 id="三、table"><a href="#三、table" class="headerlink" title="三、table"></a>三、table</h3><p>表示该查询是关于的那张表</p>
+<h3 id="四、type"><a href="#四、type" class="headerlink" title="四、type"></a>四、type</h3><p>显示查询使用了哪种类型(访问类型)</p>
+<p>常见访问类型效率从最好到最差：system&gt;const&gt;eq_ref&gt;ref&gt;range&gt;index&gt;all<br>一般来说，查询至少到range级别，最好达到ref</p>
+<blockquote>
+<ol>
+<li>system：表中只有一行记录。</li>
+<li>const: 通常是以primary key 或 unique索引作为where子句，且比较条件是键可取值中 的一个常量，通过一次索引便可找到。例如：select * from st where id = 1;</li>
+<li>eq_ref: 这种访问类型，MySQL知道最多只返回一条符合条件的记录。也是以主键或唯一性索引查找，但比较条件不是常量（另一表中的参考值）。</li>
+<li>ref: 用非唯一性索引查找，返回匹配某单个值的所有行。是查找和扫描的混合体。</li>
+<li>range: 范围扫描，即一个限制范围内的索引全扫描，常用于where子句中含between,&gt;,&lt;等范围条件的情况。</li>
+<li>index: 用索引进行的全表扫描。</li>
+<li>all: 全表扫描。</li>
+</ol>
+</blockquote>
+<h3 id="五、possible-keys"><a href="#五、possible-keys" class="headerlink" title="五、possible_keys"></a>五、possible_keys</h3><p>表示查询可能使用到哪些索引，基于查询访问的列(select子句中的字段)和比较操作符来判断的。</p>
+<h3 id="六、key"><a href="#六、key" class="headerlink" title="六、key:"></a>六、key:</h3><p>显示查询使用的索引，如果为null，则未使用索引。若使用覆盖索引<a href="某个复合索引包含select子句中的所有列，则只需根据该索引返回结果，不必再读取数据文件。查询列被所建索引覆盖。不可用select*">^标注</a>，则该索引不会出现在possible_key中。</p>
+<h3 id="七、key-len"><a href="#七、key-len" class="headerlink" title="七、key_len:"></a>七、key_len:</h3><p>表示索引使用的字节数。对于复合索引，key_len可以帮助判断是否充分用上索引，判断多列索引中用到哪些列。</p>
+<h3 id="八、ref"><a href="#八、ref" class="headerlink" title="八、ref:"></a>八、ref:</h3><p>显示了key中索引查找时，作为查找条件用到的列或常量。</p>
+<h3 id="九、rows"><a href="#九、rows" class="headerlink" title="九、rows"></a>九、rows</h3><p>根据表统计信息及索引选用情况，大致估算找到所需记录需要读取的行数。不是结果集行数。</p>
+<h3 id="十、extra"><a href="#十、extra" class="headerlink" title="十、extra:"></a>十、extra:</h3><p>包含不适合出现在其他列的额外重要信息。 </p>
+<blockquote>
+<p>using filesort(避免出现): MySQL对数据使用一个外部的索引排序，而不是按照表内的索引顺序读取。MySQL中无法用索引完成的排序操作成为“文件排序”。（排序的字段未使用到索引）</p>
+<p>using temporary(避免出现): 使用临时表保存中间结果。常见于order by 和 group by。</p>
+<p>using index: select操作使用了覆盖索引，避免了对数据行的操作。效率不错。</p>
+</blockquote>
+
+          
+            <br>
+            
+              
+  
+    
+    
+
+
+
+  
+
+  
+    
+    
+
+
+
+  
+
+  
+    
+    
+
+<section class="widget copyright  desktop mobile">
+  <div class='content'>
+    
+      <blockquote>
+        
+          
+            <p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p>
+
+          
+        
+          
+            <p>本文永久链接是：<a href=http://wus-bit.github.io/explain%E5%85%B3%E9%94%AE%E5%AD%97/>http://wus-bit.github.io/explain%E5%85%B3%E9%94%AE%E5%AD%97/</a></p>
+          
+        
+      </blockquote>
+    
+  </div>
+</section>
+
+  
+
+
+            
+          
+        </div>
+        
+          
+
+
+  <section class='meta' id="footer-meta">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-04-20T22:41:02+08:00">
+  <a class='notlink'>
+    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+    <p>更新于：2020年4月20日</p>
+  </a>
+</div>
+
+        
+      
+        
+          
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/mysql%E5%9F%BA%E7%A1%80/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>mysql基础</p></a></div>
+
+
+        
+      
+        
+          
+
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
+    
+      
+        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer"
+          
+          href="http://connect.qq.com/widget/shareqq/index.html?url=http://wus-bit.github.io/explain%E5%85%B3%E9%94%AE%E5%AD%97/&title=explain关键字 - WuS-bit&summary=概要在MySQL中，可以使用explain关键字来获取模拟优化器执行SQL语句的结果，从而知道MySQL是如何执行查询语句的，进而分析查询语句或是表结构的性能瓶颈，方便进行性能优化。"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/logo/128/qq.png">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer"
+          
+          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://wus-bit.github.io/explain%E5%85%B3%E9%94%AE%E5%AD%97/&title=explain关键字 - WuS-bit&summary=概要在MySQL中，可以使用explain关键字来获取模拟优化器执行SQL语句的结果，从而知道MySQL是如何执行查询语句的，进而分析查询语句或是表结构的性能瓶颈，方便进行性能优化。"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/logo/128/qzone.png">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer"
+          
+          href="http://service.weibo.com/share/share.php?url=http://wus-bit.github.io/explain%E5%85%B3%E9%94%AE%E5%AD%97/&title=explain关键字 - WuS-bit&summary=概要在MySQL中，可以使用explain关键字来获取模拟优化器执行SQL语句的结果，从而知道MySQL是如何执行查询语句的，进而分析查询语句或是表结构的性能瓶颈，方便进行性能优化。"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/logo/128/weibo.png">
+          
+        </a>
+      
+    
+  </div>
+</div>
+
+
+
+        
+      
+    </div>
+  </section>
+
+
+        
+        
+          <div class="prev-next">
+            
+            
+              <a class='next' href='/markdown%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/'>
+                <p class='title'>markdown基本操作<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+                <p class='content'>作为一个markdown初学者，仅以此文作为markdown基本语法实操练习，及发文章的demo。文中涉及了markdown的基本语法，供在源代码模式下记忆练习。  加油！！！
+
+
+
+一级标题二...</p>
+              </a>
+            
+          </div>
+        
+      </section>
+    </article>
+  
+
+  
+    <!-- 显示推荐文章和评论 -->
+
+
+
+  
+
+
+  
+
+
+
+
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
+
+
+
+  <script>
+    window.subData = {
+      title: 'explain关键字',
+      tools: true
+    }
+  </script>
+
 
 </div>
 <aside class='l_side'>
@@ -388,6 +643,20 @@
     
     
 
+
+  <section class="widget toc-wrapper shadow desktop mobile">
+    
+  <header>
+    
+      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
+    
+  </header>
+
+
+    <div class='content'>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#概要"><span class="toc-number">1.</span> <span class="toc-text">概要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#语法：-explain-SQL；"><span class="toc-number">2.</span> <span class="toc-text">语法： explain + SQL；</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Explain中的列"><span class="toc-number">3.</span> <span class="toc-text">Explain中的列</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#一、id列"><span class="toc-number">3.1.</span> <span class="toc-text">一、id列</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二、select-type"><span class="toc-number">3.2.</span> <span class="toc-text">二、select_type</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三、table"><span class="toc-number">3.3.</span> <span class="toc-text">三、table</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#四、type"><span class="toc-number">3.4.</span> <span class="toc-text">四、type</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#五、possible-keys"><span class="toc-number">3.5.</span> <span class="toc-text">五、possible_keys</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#六、key"><span class="toc-number">3.6.</span> <span class="toc-text">六、key:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#七、key-len"><span class="toc-number">3.7.</span> <span class="toc-text">七、key_len:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#八、ref"><span class="toc-number">3.8.</span> <span class="toc-text">八、ref:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#九、rows"><span class="toc-number">3.9.</span> <span class="toc-text">九、rows</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#十、extra"><span class="toc-number">3.10.</span> <span class="toc-text">十、extra:</span></a></li></ol></li></ol>
+    </div>
+  </section>
 
 
   
