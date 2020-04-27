@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>conda安装pytorch</title>
+      <link href="/conda%E5%AE%89%E8%A3%85pytorch/"/>
+      <url>/conda%E5%AE%89%E8%A3%85pytorch/</url>
+      
+        <content type="html"><![CDATA[<h1 id="conda安装pytorch"><a href="#conda安装pytorch" class="headerlink" title="conda安装pytorch"></a>conda安装pytorch</h1><p>因课程学习需要，刚刚开始接触pytorch,因此本文仅简单讲述如何通过conda安装pytorch，记录自己安装操作过程，并不对pytorch过多介绍，若后期对其深入一二，可能会写一篇文章简单记录学习看法。</p><a id="more"></a><h3 id="一、前提：已安装anaconda，了解基本操作"><a href="#一、前提：已安装anaconda，了解基本操作" class="headerlink" title="一、前提：已安装anaconda，了解基本操作"></a>一、前提：已安装anaconda，了解基本操作</h3><p>基于Anaconda可以便捷地获取包并对包进行管理。若尚未安装可参照该文进行安装配置：<a href="https://xuzf-git.github.io/posts/55263.html" target="_blank" rel="noopener">安装Anaconda &amp; conda指令入门 - xuzf</a></p><h3 id="二、安装过程"><a href="#二、安装过程" class="headerlink" title="二、安装过程"></a>二、安装过程</h3><ol><li>在确保安装好anaconda且添加好镜像(详情见上文推荐博客)之后，先进入其官网转转：<a href="https://pytorch.org/get-started/locally/" target="_blank" rel="noopener">pytorch官网get-start</a><br><img src="/img/pytorchlearning/start/install.png" alt="get-start"></li><li>为避免框架之间包冲突，因此先创建一个虚拟环境，在此环境下进行后续操作<blockquote><p>创建环境：conda create -name env_name python=3.7  (env_name替换为自己的环境名)<br>进入环境：conda activate env_name</p></blockquote></li><li>安装gpu版pytorch<blockquote><p>安装指令：conda install pytorch torchvision cudatoolkit<br>注：不要按照官网指令后面加：-c pytorch，否则无法用到镜像源<br>此步过程中可能较多次出现如下问题：<br><img src="/img/pytorchlearning/start/error.png" alt="error"><br>保持耐心，多次尝试！</p></blockquote></li><li>安装成功后，进行测试<br><img src="/img/pytorchlearning/start/test.png" alt="test"></li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> 深度学习 </category>
+          
+          <category> pytorch安装 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> pytorch学习 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>事务-系统恢复-并发控制</title>
       <link href="/%E4%BA%8B%E5%8A%A1-%E7%B3%BB%E7%BB%9F%E6%81%A2%E5%A4%8D-%E5%B9%B6%E5%8F%91%E6%8E%A7%E5%88%B6/"/>
       <url>/%E4%BA%8B%E5%8A%A1-%E7%B3%BB%E7%BB%9F%E6%81%A2%E5%A4%8D-%E5%B9%B6%E5%8F%91%E6%8E%A7%E5%88%B6/</url>
