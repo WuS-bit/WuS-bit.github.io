@@ -21,7 +21,7 @@
     <meta name="keywords" content="数据库课程学习">
   
   
-    <meta name="description" content="本文用以记录数据库概念专业课学习过程中事务，系统恢复，并发控制章节中的重要概念（更新中……）">
+    <meta name="description" content="本文用以记录数据库概念专业课学习过程中事务，系统恢复，并发控制章节中的重要概念">
   
 
   <!-- feed -->
@@ -410,8 +410,10 @@
       <section class="article typo">
         <div class="article-entry" itemprop="articleBody">
           
-          <p>本文用以记录数据库概念专业课学习过程中事务，系统恢复，并发控制章节中的重要概念（更新中……）</p>
+          <p>本文用以记录数据库概念专业课学习过程中事务，系统恢复，并发控制章节中的重要概念</p>
 <a id="more"></a>
+
+
 
 
 <h2 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h2><h3 id="一、事物的概念："><a href="#一、事物的概念：" class="headerlink" title="一、事物的概念："></a>一、事物的概念：</h3><blockquote>
@@ -433,6 +435,13 @@
 <li>中止的(aborted)：事务回滚并且数据库已经恢复到事务执行前的状态。</li>
 <li>提交状态(committed)： 事务成功完成后。向日志记录中写入一条事务日志信息，并将事务对数据的更改完全写入磁盘时，标志着事务成功完成，这时事务就进入了提交状态。事务成功执行之后，更新结果转存到永久存储器上，因此，事务一旦提交，即使出现了故障，事务所做的数据更新也能在系统重新启动后恢复。</li>
 </ol>
+<pre class="mermaid">> graph LR
+A(活跃状态) -->B(部分提交状态)
+A(活跃状态) -->C(失败状态)
+B(部分提交状态) -->C(失败状态)
+B(部分提交状态) -->D(提交状态)
+C(失败状态) -->E(中止状态)
+</pre>
 </blockquote>
 <h2 id="恢复系统"><a href="#恢复系统" class="headerlink" title="恢复系统"></a>恢复系统</h2><h3 id="四、故障分类"><a href="#四、故障分类" class="headerlink" title="四、故障分类"></a>四、故障分类</h3><blockquote>
 <ul>
@@ -446,7 +455,8 @@
 </ul>
 </blockquote>
 <h3 id="五、数据库恢复技术"><a href="#五、数据库恢复技术" class="headerlink" title="五、数据库恢复技术"></a>五、数据库恢复技术</h3><ol>
-<li><p>基本原理：建冗余数据，即利用存储在系统其他地方（与数据分离）的冗余数据来实现恢复。</p>
+<li>基本原理：建冗余数据，即利用存储在系统其他地方（与数据分离）的冗余数据来实现恢复。</li>
+</ol>
 <blockquote>
 <p><strong>建立冗余数据的常用技术：</strong></p>
 <ul>
@@ -454,7 +464,7 @@
 <li>记录日志文件</li>
 </ul>
 </blockquote>
-</li>
+<ol start="2">
 <li><p>数据转储：DBA定期地将整个数据库复制到磁带或另一个磁盘上作为备份保存。</p>
 <ul>
 <li>转储方式：<ul>
@@ -465,6 +475,8 @@
 </ul>
 </li>
 <li><p>基于日志的数据库恢复：在修改数据库本身之前，首先向稳定存储器中输入修改描述信息，再执行修改操作，以确保已提交事务的修改能永久存储，中止的事务可回滚。<strong>日志记录技术要保证先写日志，再修改数据</strong></p>
+</li>
+</ol>
 <blockquote>
 <ol>
 <li>日志记录的基本格式：</li>
@@ -476,15 +488,13 @@
 <li>新值(V<del>2</del>)：数据项的写后值。<br>一般表示未&lt;T<del>i</del>, X<del>j</del>, V<del>1</del>,  V<del>2</del>&gt;。<br>&lt;T<del>i</del> start&gt; 事务T<del>i</del>开始。<br>&lt;T<del>i</del> commit&gt; 事务T<del>i</del>提交，表示事务对数据库的所有修改已提交到缓冲区，不能确定是否更新了磁盘。<br>&lt;T<del>i</del> abort&gt; 事务T<del>i</del>中止。</li>
 </ul>
 <ol start="2">
-<li>基于日志的恢复技术：<ol>
+<li>基于日志的恢复技术：<ol start="3">
 <li>redo：对于已提交的写操作，当系统发生故障崩溃时，用redo重做事务，恢复已完成的事务。</li>
 <li>undo：对于修改了数据库但未提交的事务，利用undo撤销事务的影响。</li>
 </ol>
 </li>
 </ol>
 </blockquote>
-</li>
-</ol>
 <h3 id="六、检查点恢复技术"><a href="#六、检查点恢复技术" class="headerlink" title="六、检查点恢复技术"></a>六、检查点恢复技术</h3><ol>
 <li><p>检查点的引入：为减少日志记录的搜索规模并减少重复的redo操作，引入检查点技术，即在日志文件中加一个表示数据库是否正常运行的标识。<strong>检查点写入时保证（1）此时不允许有任何更新操作（2）将所有更新过的缓冲块写入磁盘(保证检查点之前已提交的事务已写入磁盘，中止事务已回滚)</strong></p>
 </li>
@@ -502,7 +512,7 @@
 <ol>
 <li>将当前位于主存的所有日志记录输出到稳定存储器。</li>
 <li>将所有修改操作结果的缓冲块写入磁盘</li>
-<li>将一个日志记录<checkpoint L>写入稳定存储器，L是建立检查点时刻所有正在执行的事务清单<ol start="4">
+<li>将一个日志记录&lt;checkpoint L&gt;写入稳定存储器，L是建立检查点时刻所有正在执行的事务清单<ol start="4">
 <li>将检查点记录在日志文件中的地址写入重启动文件。</li>
 </ol>
 </li>
@@ -527,7 +537,9 @@
 </ol>
 <h3 id="七、数据库的镜像恢复技术（涉及负载均衡，主从复制等后期补充）"><a href="#七、数据库的镜像恢复技术（涉及负载均衡，主从复制等后期补充）" class="headerlink" title="七、数据库的镜像恢复技术（涉及负载均衡，主从复制等后期补充）"></a>七、数据库的镜像恢复技术（涉及负载均衡，主从复制等后期补充）</h3><ol>
 <li>概念：为预防介质故障，DBA周期性地转储数据库。</li>
-<li>使用：<blockquote>
+<li>使用：</li>
+</ol>
+<blockquote>
 <ol>
 <li>出现介质故障：<ul>
 <li>可由镜像磁盘继续提供使用</li>
@@ -541,6 +553,92 @@
 </li>
 </ol>
 </blockquote>
+<h2 id="并发控制"><a href="#并发控制" class="headerlink" title="并发控制"></a>并发控制</h2><h3 id="八、并发操作带来的数据不一致性："><a href="#八、并发操作带来的数据不一致性：" class="headerlink" title="八、并发操作带来的数据不一致性："></a>八、并发操作带来的数据不一致性：</h3><ol>
+<li>丢失更新：事务1和事务2从数据库读入同一数据并先后修改，后提交的事务结果破坏了先提交事务的更新结果，导致先提交事务的修改丢失。</li>
+<li>读“脏”数据：事务1修改了某一数据，但还未提交，此时事务2读到了事务1所修改的数据，后续事务1可能因为某种原因被撤销，事务1回滚，则事务2读到的就是与数据库中不一致的数据，称为脏读。</li>
+<li>不可重复读（包括幻象读）：在事务执行过程中，事务1读取某一数据后，事务2对同一数据执行更新操作并且完成提交，使得事务1再次读取该数据时，发现与前一次所读不同，称之为不可重复读。若事务2执行的是插入或删除操作，会使事务1前后两次读出的数据数量不同，称之为幻象读。</li>
+</ol>
+<p>数据库的事务隔离级别</p>
+<table>
+<thead>
+<tr>
+<th align="left">隔离级别</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">读未提交(READ UNCOMMIT)</td>
+<td align="left">允许事务读取其他事务未提交的数据，<strong>脏读、不可重复读、幻象读都会出现</strong></td>
+</tr>
+<tr>
+<td align="left">读已提交(READ COMMITED)</td>
+<td align="left">只允许事务读取其他事务已提交的数据，可避免<strong>脏读</strong>，会出现不可重复读和幻读现象，也是大多数数据库的默认隔离级别，mysql不是</td>
+</tr>
+<tr>
+<td align="left">可重复读(REPEATABLE READ)</td>
+<td align="left">确保某一事务多次读取同一数据结果相同（其他事务不可update该数据），但未解决幻读现象（其他事务可insert），Mysql的默认隔离级别</td>
+</tr>
+<tr>
+<td align="left">可串行化(SERIALIZABLE)</td>
+<td align="left">强制所有事务串行执行，在这个事务持续期间，禁止其他事务对该表执行插入、更新、删除操作，所有并发问题都可以避免，但并发性能十分低下。</td>
+</tr>
+</tbody></table>
+<h3 id="数据不一致性的解决方案："><a href="#数据不一致性的解决方案：" class="headerlink" title="数据不一致性的解决方案："></a>数据不一致性的解决方案：</h3><ol>
+<li>基于锁的协议</li>
+<li>基于时间戳协议</li>
+<li>基于有效性检查的协议</li>
+<li>多版本并发控制</li>
+<li>快照隔离</li>
+</ol>
+<h4 id="基于锁的协议："><a href="#基于锁的协议：" class="headerlink" title="基于锁的协议："></a>基于锁的协议：</h4><ol>
+<li><p>概念：确保隔离性（并发事务的可串行化技术），实际上遵循了一种约束：当一个事务访问某个数据项时，其他任何事务都不能修改这个数据项，实现该约束的最常用方法就是只允许事务访问该事务当前持有锁的数据项。</p>
+</li>
+<li><p>锁的分类</p>
+<ol>
+<li>基本锁的分类：</li>
+</ol>
+<blockquote>
+<ol>
+<li>共享锁（Share lock, S锁、读锁）：若事务T对数据对象A加上S锁，则其他事务只能再对A加S锁，而不能加X锁，直到T释放A上的S锁。<strong>保证其他事务可以获得对象A的S锁读取A，但不可对A修改，直到A上无S锁，事务才可对A加X锁，更新A</strong></li>
+<li>排他锁（eXclusive lock，X锁，写锁）：若事务T对数据项A加X锁，则只允许T读取和修改A，其他事务不能再对A加任何类型的锁。</li>
+</ol>
+</blockquote>
+<ol start="2">
+<li>封锁协议：运用封锁方法进行并发控制时，对数据对象加锁时需要约定的规则。</li>
+</ol>
+<blockquote>
+<p>何时申请锁<br>持锁时间<br>何时释放锁<br>封锁协议分类：</p>
+</blockquote>
+<ol>
+<li>一级封锁协议：事务T在修改数据A前必须先对其加X锁，直到事务结束才释放，不会<strong>丢失修改</strong>，但在<strong>读数据时不加锁</strong>，会产生脏读和不可重复读。</li>
+<li>二级封锁协议：在一级封锁协议基础上，事务T在读取数据A之前必须先对其加S锁，<strong>读完即可释放S锁</strong>，可防止脏读，但不能避免不可重复读。</li>
+<li>三级封锁协议：在二级封锁协议的基础上，S锁要保持到该事务结束才释放。</li>
+<li>两阶段封锁协议：最常用的封锁协议。理论上可以证明两阶段锁协议产生的是可串行化调度。两阶段封锁是指事务必须分两个阶段对数据项加锁和解锁。</li>
+</ol>
+<blockquote>
+<p>第一阶段是获得锁，也称扩展阶段：这个阶段事务可以<strong>申请</strong>获得任何数据项上的任何类型    的锁，但不可释放任何锁。<br>第二阶段是释放锁，也称收缩阶段。这个阶段事务可以释放任何数据项上的任何锁，但不可获 得锁。<br>遵循两阶段锁的事务，并行执行的结果一定是正确的，但没有避免死锁（不是一次封锁法） </p>
+</blockquote>
+</li>
+<li><p>死锁：死锁是指同时处在申请锁的等待状态的两个或多个事务相互封锁了对方请求的资源，使得没有任何一个事务能获得足够资源运行完毕，而永远等待下去。<br>预防死锁的方法有：</p>
+<ol>
+<li><p>死锁预防：针对于系统进入死锁状态概率较高的情形</p>
+<ol start="2">
+<li><p>一次封锁法：在事务开始前将事务可能用到的数据项全部封锁</p>
+</li>
+<li><p>顺序封锁法：预先对数据对象规定一个封锁顺序，事务按改顺序实行封锁</p>
+</li>
+<li><p>使用抢占与事务回滚：基于时间戳决定事务是否回滚以释放另一事务所申请的锁</p>
+</li>
+</ol>
+</li>
+<li><p>死锁的检测与恢复：允许死锁发生，由DBMS定期检查是否产生了死锁，并设法解除。<br>死锁检测方法：</p>
+<ol>
+<li>超时法：如果一个事务等待时间超过了时限则认定为死锁。</li>
+<li>事务等待图法：用一个有向图表示事务间申请锁的等待关系，若存在回路则产生了死锁</li>
+</ol>
+<p>死锁的恢复：选择一个处理死锁代价最小的事务将其回滚</p>
+</li>
+</ol>
 </li>
 </ol>
 <p>. </p>
@@ -602,10 +700,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-04-27T15:37:10+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-05-11T21:59:28+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：2020年4月27日</p>
+    <p>更新于：2020年5月11日</p>
   </a>
 </div>
 
@@ -632,7 +730,7 @@
       
         <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer"
           
-          href="http://connect.qq.com/widget/shareqq/index.html?url=http://wus-bit.github.io/%E4%BA%8B%E5%8A%A1-%E7%B3%BB%E7%BB%9F%E6%81%A2%E5%A4%8D-%E5%B9%B6%E5%8F%91%E6%8E%A7%E5%88%B6/&title=事务-系统恢复-并发控制 - WuS-bit&summary=本文用以记录数据库概念专业课学习过程中事务，系统恢复，并发控制章节中的重要概念（更新中……）"
+          href="http://connect.qq.com/widget/shareqq/index.html?url=http://wus-bit.github.io/%E4%BA%8B%E5%8A%A1-%E7%B3%BB%E7%BB%9F%E6%81%A2%E5%A4%8D-%E5%B9%B6%E5%8F%91%E6%8E%A7%E5%88%B6/&title=事务-系统恢复-并发控制 - WuS-bit&summary=本文用以记录数据库概念专业课学习过程中事务，系统恢复，并发控制章节中的重要概念"
           
           >
           
@@ -644,7 +742,7 @@
       
         <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer"
           
-          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://wus-bit.github.io/%E4%BA%8B%E5%8A%A1-%E7%B3%BB%E7%BB%9F%E6%81%A2%E5%A4%8D-%E5%B9%B6%E5%8F%91%E6%8E%A7%E5%88%B6/&title=事务-系统恢复-并发控制 - WuS-bit&summary=本文用以记录数据库概念专业课学习过程中事务，系统恢复，并发控制章节中的重要概念（更新中……）"
+          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://wus-bit.github.io/%E4%BA%8B%E5%8A%A1-%E7%B3%BB%E7%BB%9F%E6%81%A2%E5%A4%8D-%E5%B9%B6%E5%8F%91%E6%8E%A7%E5%88%B6/&title=事务-系统恢复-并发控制 - WuS-bit&summary=本文用以记录数据库概念专业课学习过程中事务，系统恢复，并发控制章节中的重要概念"
           
           >
           
@@ -656,7 +754,7 @@
       
         <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer"
           
-          href="http://service.weibo.com/share/share.php?url=http://wus-bit.github.io/%E4%BA%8B%E5%8A%A1-%E7%B3%BB%E7%BB%9F%E6%81%A2%E5%A4%8D-%E5%B9%B6%E5%8F%91%E6%8E%A7%E5%88%B6/&title=事务-系统恢复-并发控制 - WuS-bit&summary=本文用以记录数据库概念专业课学习过程中事务，系统恢复，并发控制章节中的重要概念（更新中……）"
+          href="http://service.weibo.com/share/share.php?url=http://wus-bit.github.io/%E4%BA%8B%E5%8A%A1-%E7%B3%BB%E7%BB%9F%E6%81%A2%E5%A4%8D-%E5%B9%B6%E5%8F%91%E6%8E%A7%E5%88%B6/&title=事务-系统恢复-并发控制 - WuS-bit&summary=本文用以记录数据库概念专业课学习过程中事务，系统恢复，并发控制章节中的重要概念"
           
           >
           
@@ -744,7 +842,7 @@ Expl...</p>
 
 
     <div class='content'>
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#事务"><span class="toc-number">1.</span> <span class="toc-text">事务</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#一、事物的概念："><span class="toc-number">1.1.</span> <span class="toc-text">一、事物的概念：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二、事务的特性（ACID）"><span class="toc-number">1.2.</span> <span class="toc-text">二、事务的特性（ACID）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三、事务的状态"><span class="toc-number">1.3.</span> <span class="toc-text">三、事务的状态</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#恢复系统"><span class="toc-number">2.</span> <span class="toc-text">恢复系统</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#四、故障分类"><span class="toc-number">2.1.</span> <span class="toc-text">四、故障分类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#五、数据库恢复技术"><span class="toc-number">2.2.</span> <span class="toc-text">五、数据库恢复技术</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#六、检查点恢复技术"><span class="toc-number">2.3.</span> <span class="toc-text">六、检查点恢复技术</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#七、数据库的镜像恢复技术（涉及负载均衡，主从复制等后期补充）"><span class="toc-number">2.4.</span> <span class="toc-text">七、数据库的镜像恢复技术（涉及负载均衡，主从复制等后期补充）</span></a></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#事务"><span class="toc-number">1.</span> <span class="toc-text">事务</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#一、事物的概念："><span class="toc-number">1.1.</span> <span class="toc-text">一、事物的概念：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二、事务的特性（ACID）"><span class="toc-number">1.2.</span> <span class="toc-text">二、事务的特性（ACID）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三、事务的状态"><span class="toc-number">1.3.</span> <span class="toc-text">三、事务的状态</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#恢复系统"><span class="toc-number">2.</span> <span class="toc-text">恢复系统</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#四、故障分类"><span class="toc-number">2.1.</span> <span class="toc-text">四、故障分类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#五、数据库恢复技术"><span class="toc-number">2.2.</span> <span class="toc-text">五、数据库恢复技术</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#六、检查点恢复技术"><span class="toc-number">2.3.</span> <span class="toc-text">六、检查点恢复技术</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#七、数据库的镜像恢复技术（涉及负载均衡，主从复制等后期补充）"><span class="toc-number">2.4.</span> <span class="toc-text">七、数据库的镜像恢复技术（涉及负载均衡，主从复制等后期补充）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#并发控制"><span class="toc-number">3.</span> <span class="toc-text">并发控制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#八、并发操作带来的数据不一致性："><span class="toc-number">3.1.</span> <span class="toc-text">八、并发操作带来的数据不一致性：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据不一致性的解决方案："><span class="toc-number">3.2.</span> <span class="toc-text">数据不一致性的解决方案：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#基于锁的协议："><span class="toc-number">3.2.1.</span> <span class="toc-text">基于锁的协议：</span></a></li></ol></li></ol></li></ol>
     </div>
   </section>
 
