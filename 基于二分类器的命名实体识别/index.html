@@ -413,7 +413,7 @@
           <p>课程第一次大作业：基于北大语料库，做机构实体识别任务。</p>
 <a id="more"></a>
 <h1 id="基于二分类的命名实体识别实验报告"><a href="#基于二分类的命名实体识别实验报告" class="headerlink" title="基于二分类的命名实体识别实验报告"></a>基于二分类的命名实体识别实验报告</h1><h3 id="一、概述"><a href="#一、概述" class="headerlink" title="一、概述"></a>一、概述</h3><p>  作为一个从没有过课程相关内容学习和实操经验的小白，一开始接触到这次作业完全没有头绪，上课时仅能从数学运算的角度理解一些公式和原理，但涉及到作业任务的具体实现，根本没有思路，不知从何处下手。经历了苦闷与挣扎，也在老师和同学的帮助下渐渐有了实现的思路，于是经过自学和不断的“面向搜索引擎编程”解决遇到的各种问题，终于完成了第一次作业。尽管实现过程及结果可能不是最好，但个人对于自己在完成这次作业的过程中取得的收获比较满意。也希望自己在课程后续学习及作业完成过程中继续进步。</p>
-<h3 id="二、具体实现过程"><a href="#二、具体实现过程" class="headerlink" title="二、具体实现过程"></a>二、具体实现过程</h3><pre><code>1. 概述：整个作业实现过程大体分为：处理语料库，特征提取（one-hot编码），训练过程实现。</code></pre><h4 id="1-处理语料库"><a href="#1-处理语料库" class="headerlink" title="1. 处理语料库"></a>1. 处理语料库</h4><p>初始语料库样例：<img src="./images/01.png" alt="语料库"></p>
+<h3 id="二、具体实现过程"><a href="#二、具体实现过程" class="headerlink" title="二、具体实现过程"></a>二、具体实现过程</h3><pre><code>1. 概述：整个作业实现过程大体分为：处理语料库，特征提取（one-hot编码），训练过程实现。</code></pre><h4 id="1-处理语料库"><a href="#1-处理语料库" class="headerlink" title="1. 处理语料库"></a>1. 处理语料库</h4><p>初始语料库样例：<img src="/img/images/01.png" alt="语料库"></p>
 <p>要求：</p>
 <ol>
 <li>将语料库分为训练集、验证集、测试集。</li>
@@ -437,7 +437,7 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 匹配汉字及其标注的正则表达式 形如：主席/n  江/nrf</span></span><br><span class="line">patt2 = re.compile(<span class="string">r"[\u4E00-\u9FA5]+[/a-z]+"</span>)</span><br><span class="line"><span class="comment"># 分别找出汉字及其标注，加入对应列表</span></span><br><span class="line">temp = patt2.findall(item)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> temp:</span><br><span class="line">        s = re.split(<span class="string">r"/"</span>, i)</span><br><span class="line">        <span class="keyword">if</span> s[<span class="number">1</span>] == <span class="string">'nt'</span>:</span><br><span class="line">            k.append(s[<span class="number">0</span>])</span><br><span class="line">            v.append(<span class="number">1</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            k.append(s[<span class="number">0</span>])</span><br><span class="line">            v.append(<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
 
 <ol start="5">
-<li>词列表处理结果样例：<img src="./images/02.png" alt="词列表样例"></li>
+<li>词列表处理结果样例：<img src="/img/images/02.png" alt="词列表样例"></li>
 </ol>
 <h4 id="2-特征提取-one-hot编码"><a href="#2-特征提取-one-hot编码" class="headerlink" title="2. 特征提取(one-hot编码)"></a>2. 特征提取(one-hot编码)</h4><p>要求：根据训练集语料构建一个500词的词典，将语料中的每一词转化为包括前一词、当前词、后一词信息的1500维向量。</p>
 <p>思路及要点：</p>
@@ -704,7 +704,7 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-05-20T09:51:47+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-05-20T09:57:35+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
     <p>更新于：2020年5月20日</p>
